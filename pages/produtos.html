@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Produtos — FarmaVida</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/produtos.css" />
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo"><span class="logo-cross">✚</span> FarmaVida</a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Início</a></li>
+        <li><a href="produtos.html" class="active">Produtos</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="login.html" class="btn-outline">Entrar</a>
+        <a href="carrinho.html" class="btn-cart">
+          <span class="cart-icon">🛒</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+      </div>
+      <button class="menu-toggle" id="menuToggle">☰</button>
+    </div>
+  </nav>
+
+  <div class="page-header-bar">
+    <div class="container">
+      <h1 class="page-title">Nossos Produtos</h1>
+      <p>Encontre medicamentos, suplementos e muito mais</p>
+    </div>
+  </div>
+
+  <div class="produtos-layout container">
+    <!-- SIDEBAR FILTROS -->
+    <aside class="sidebar-filtros">
+      <div class="filtro-block">
+        <h3>Buscar</h3>
+        <input type="text" id="searchInput" placeholder="Nome do produto..." class="search-input" />
+      </div>
+      <div class="filtro-block">
+        <h3>Categorias</h3>
+        <div class="filtro-options" id="categoriasFilter">
+          <label class="filtro-opt active" data-cat="todos">
+            <input type="radio" name="cat" value="todos" checked hidden> Todos os produtos
+          </label>
+          <label class="filtro-opt" data-cat="medicamentos">
+            <input type="radio" name="cat" value="medicamentos" hidden> 💊 Medicamentos
+          </label>
+          <label class="filtro-opt" data-cat="suplementos">
+            <input type="radio" name="cat" value="suplementos" hidden> 🌿 Suplementos
+          </label>
+          <label class="filtro-opt" data-cat="cosmeticos">
+            <input type="radio" name="cat" value="cosmeticos" hidden> 🧴 Cosméticos
+          </label>
+          <label class="filtro-opt" data-cat="bebes">
+            <input type="radio" name="cat" value="bebes" hidden> 👶 Bebês
+          </label>
+          <label class="filtro-opt" data-cat="equipamentos">
+            <input type="radio" name="cat" value="equipamentos" hidden> 🩺 Equipamentos
+          </label>
+          <label class="filtro-opt" data-cat="higiene">
+            <input type="radio" name="cat" value="higiene" hidden> 🪥 Higiene
+          </label>
+        </div>
+      </div>
+      <div class="filtro-block">
+        <h3>Ordenar por</h3>
+        <select id="orderSelect">
+          <option value="default">Relevância</option>
+          <option value="preco-asc">Menor preço</option>
+          <option value="preco-desc">Maior preço</option>
+          <option value="nome">Nome (A-Z)</option>
+        </select>
+      </div>
+      <div class="filtro-block">
+        <label class="filtro-check">
+          <input type="checkbox" id="apenasEstoque" />
+          Apenas em estoque
+        </label>
+      </div>
+    </aside>
+
+    <!-- LISTAGEM -->
+    <main class="produtos-main">
+      <div class="produtos-top">
+        <span id="resultCount" class="result-count"></span>
+      </div>
+      <div class="products-grid" id="produtosGrid"></div>
+      <div id="emptyState" class="empty-state" style="display:none">
+        <div style="font-size:48px;margin-bottom:12px">🔍</div>
+        <h3>Nenhum produto encontrado</h3>
+        <p>Tente outra busca ou categoria.</p>
+      </div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none;padding-top:0">
+        <p>© 2024 FarmaVida. Todos os direitos reservados.</p>
+        <p>Hospedado na <strong>Amazon Web Services</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/produtos.js"></script>
+</body>
+</html>

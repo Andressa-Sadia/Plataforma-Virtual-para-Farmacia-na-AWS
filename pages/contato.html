@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contato — FarmaVida</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css" />
+  <style>
+    .page-header-bar { background: linear-gradient(135deg, var(--green-dark), var(--green)); padding: 100px 0 60px; color: #fff; }
+    .page-title { font-family: var(--font-display); font-size: 48px; font-weight: 400; margin-bottom: 12px; }
+    .contact-section { padding: 80px 0; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; }
+    .contact-info h2 { font-family: var(--font-display); font-size: 30px; margin-bottom: 20px; }
+    .contact-item { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 24px; }
+    .contact-item-icon { font-size: 24px; width: 44px; height: 44px; background: var(--green-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .contact-item h4 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+    .contact-item p { font-size: 13px; color: var(--text-muted); }
+    .contact-form { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; }
+    .contact-form h2 { font-family: var(--font-display); font-size: 26px; margin-bottom: 24px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo"><span class="logo-cross">✚</span> FarmaVida</a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Início</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="contato.html" class="active">Contato</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="login.html" class="btn-outline">Entrar</a>
+        <a href="carrinho.html" class="btn-cart"><span>🛒</span><span class="cart-count" id="cartCount">0</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header-bar">
+    <div class="container">
+      <h1 class="page-title">Entre em contato</h1>
+      <p style="color:rgba(255,255,255,0.75);font-size:18px">Estamos aqui para ajudar. Fale com nossa equipe.</p>
+    </div>
+  </div>
+
+  <section class="contact-section">
+    <div class="container contact-grid">
+      <div class="contact-info">
+        <h2>Como podemos ajudar?</h2>
+        <div class="contact-item">
+          <div class="contact-item-icon">📧</div>
+          <div>
+            <h4>E-mail</h4>
+            <p>contato@farmavida.com.br</p>
+            <p>suporte@farmavida.com.br</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div>
+            <h4>Telefone</h4>
+            <p>0800 000 0000 (gratuito)</p>
+            <p>(11) 3000-0000</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">🕐</div>
+          <div>
+            <h4>Horário de atendimento</h4>
+            <p>Seg–Sex: 8h às 22h</p>
+            <p>Sáb–Dom: 9h às 18h</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">👨‍⚕️</div>
+          <div>
+            <h4>Suporte farmacêutico</h4>
+            <p>Chat disponível 24h para dúvidas sobre medicamentos.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h2>Envie uma mensagem</h2>
+        <div id="formMsg"></div>
+        <div class="form-row">
+          <div class="form-group"><label>Nome</label><input type="text" id="ctNome" placeholder="Seu nome" /></div>
+          <div class="form-group"><label>E-mail</label><input type="email" id="ctEmail" placeholder="seu@email.com" /></div>
+        </div>
+        <div class="form-group"><label>Assunto</label>
+          <select id="ctAssunto">
+            <option value="">Selecione...</option>
+            <option>Dúvida sobre produto</option>
+            <option>Pedido / Entrega</option>
+            <option>Suporte técnico</option>
+            <option>Farmacêutico</option>
+            <option>Outros</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Mensagem</label><textarea id="ctMsg" placeholder="Descreva sua dúvida ou solicitação..."></textarea></div>
+        <button class="btn-primary" style="width:100%" onclick="enviarContato()">Enviar mensagem</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none;padding-top:0">
+        <p>© 2024 FarmaVida. Todos os direitos reservados.</p>
+        <p>Hospedado na <strong>Amazon Web Services</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    function enviarContato() {
+      const nome = document.getElementById('ctNome').value;
+      const email = document.getElementById('ctEmail').value;
+      const msg = document.getElementById('ctMsg').value;
+      const div = document.getElementById('formMsg');
+      if (!nome || !email || !msg) {
+        div.innerHTML = '<div class="alert alert-error">Preencha os campos obrigatórios.</div>';
+        return;
+      }
+      div.innerHTML = '<div class="alert alert-success">Mensagem enviada com sucesso! Responderemos em até 24h.</div>';
+      document.getElementById('ctNome').value = '';
+      document.getElementById('ctEmail').value = '';
+      document.getElementById('ctMsg').value = '';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FarmaVida — Farmácia Online</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/home.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-cross">✚</span> FarmaVida
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Início</a></li>
+        <li><a href="pages/produtos.html">Produtos</a></li>
+        <li><a href="pages/sobre.html">Sobre</a></li>
+        <li><a href="pages/contato.html">Contato</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="pages/login.html" class="btn-outline">Entrar</a>
+        <a href="pages/carrinho.html" class="btn-cart">
+          <span class="cart-icon">🛒</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+      </div>
+      <button class="menu-toggle" id="menuToggle">☰</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-tag">Sua saúde em primeiro lugar</span>
+      <h1 class="hero-title">Cuidado que <em>você merece</em>, entregue na sua porta.</h1>
+      <p class="hero-desc">Medicamentos, suplementos e produtos de saúde com entrega rápida, segura e com suporte farmacêutico.</p>
+      <div class="hero-actions">
+        <a href="pages/produtos.html" class="btn-primary">Ver produtos</a>
+        <a href="pages/sobre.html" class="btn-ghost">Saiba mais</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>+8.000</strong><span>Produtos</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>24h</strong><span>Entrega expressa</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>100%</strong><span>Seguro e confiável</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hcard-icon">💊</div>
+        <div class="hcard-text">
+          <strong>Medicamentos</strong>
+          <span>Genéricos e de marca</span>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hcard-icon">🌿</div>
+        <div class="hcard-text">
+          <strong>Suplementos</strong>
+          <span>Vitaminas e minerais</span>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hcard-icon">🧴</div>
+        <div class="hcard-text">
+          <strong>Dermocosméticos</strong>
+          <span>Cuidados com a pele</span>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hcard-icon">🩺</div>
+        <div class="hcard-text">
+          <strong>Equipamentos</strong>
+          <span>Para uso doméstico</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIAS -->
+  <section class="section categories">
+    <div class="container">
+      <h2 class="section-title">Navegue por categoria</h2>
+      <div class="cat-grid">
+        <a href="pages/produtos.html?cat=medicamentos" class="cat-card">
+          <span class="cat-emoji">💊</span>
+          <strong>Medicamentos</strong>
+        </a>
+        <a href="pages/produtos.html?cat=suplementos" class="cat-card">
+          <span class="cat-emoji">🌿</span>
+          <strong>Suplementos</strong>
+        </a>
+        <a href="pages/produtos.html?cat=cosmeticos" class="cat-card">
+          <span class="cat-emoji">🧴</span>
+          <strong>Cosméticos</strong>
+        </a>
+        <a href="pages/produtos.html?cat=bebes" class="cat-card">
+          <span class="cat-emoji">👶</span>
+          <strong>Bebês</strong>
+        </a>
+        <a href="pages/produtos.html?cat=equipamentos" class="cat-card">
+          <span class="cat-emoji">🩺</span>
+          <strong>Equipamentos</strong>
+        </a>
+        <a href="pages/produtos.html?cat=higiene" class="cat-card">
+          <span class="cat-emoji">🪥</span>
+          <strong>Higiene</strong>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUTOS EM DESTAQUE -->
+  <section class="section featured">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Produtos em destaque</h2>
+        <a href="pages/produtos.html" class="link-all">Ver todos →</a>
+      </div>
+      <div class="products-grid" id="featuredProducts"></div>
+    </div>
+  </section>
+
+  <!-- BANNER AWS -->
+  <section class="aws-banner">
+    <div class="container">
+      <div class="aws-content">
+        <div class="aws-text">
+          <span class="aws-tag">Infraestrutura em nuvem</span>
+          <h2>Plataforma hospedada na <strong>AWS</strong></h2>
+          <p>Alta disponibilidade, segurança e escalabilidade garantidas pelos serviços Amazon Web Services.</p>
+          <div class="aws-services">
+            <span class="aws-chip">EC2</span>
+            <span class="aws-chip">S3</span>
+            <span class="aws-chip">RDS</span>
+            <span class="aws-chip">CloudFront</span>
+            <span class="aws-chip">Route 53</span>
+            <span class="aws-chip">WAF</span>
+          </div>
+        </div>
+        <a href="pages/sobre.html#aws" class="btn-primary">Ver arquitetura</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUE ESCOLHER -->
+  <section class="section why">
+    <div class="container">
+      <h2 class="section-title">Por que escolher a FarmaVida?</h2>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">🚚</div>
+          <h3>Entrega rápida</h3>
+          <p>Receba em até 24h nas principais capitais do Brasil com rastreamento em tempo real.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🔒</div>
+          <h3>Compra segura</h3>
+          <p>Pagamentos criptografados e dados protegidos com infraestrutura AWS WAF e Shield.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">👨‍⚕️</div>
+          <h3>Suporte farmacêutico</h3>
+          <p>Farmacêuticos disponíveis via chat 24h para tirar dúvidas sobre medicamentos.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">💰</div>
+          <h3>Melhores preços</h3>
+          <p>Genéricos e de marca com preços competitivos e programa de fidelidade exclusivo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo"><span class="logo-cross">✚</span> FarmaVida</div>
+          <p>Sua farmácia online de confiança, com infraestrutura AWS para máxima disponibilidade.</p>
+          <p class="footer-cnpj">CNPJ: 00.000.000/0001-00 | CRF-SP: 00000</p>
+        </div>
+        <div class="footer-links">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="pages/produtos.html">Produtos</a></li>
+            <li><a href="pages/sobre.html">Sobre</a></li>
+            <li><a href="pages/contato.html">Contato</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Conta</h4>
+          <ul>
+            <li><a href="pages/login.html">Entrar</a></li>
+            <li><a href="pages/cadastro.html">Cadastrar</a></li>
+            <li><a href="pages/carrinho.html">Carrinho</a></li>
+            <li><a href="#">Meus pedidos</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contato</h4>
+          <p>📧 contato@farmavida.com.br</p>
+          <p>📞 0800 000 0000</p>
+          <p>🕐 Seg–Sex: 8h às 22h</p>
+          <p>🕐 Sáb–Dom: 9h às 18h</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 FarmaVida. Todos os direitos reservados.</p>
+        <p>Hospedado na <strong>Amazon Web Services</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

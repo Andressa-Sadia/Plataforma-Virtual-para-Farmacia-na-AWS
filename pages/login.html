@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entrar — FarmaVida</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css" />
+  <style>
+    body { min-height: 100vh; display: flex; flex-direction: column; }
+    .auth-wrapper {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      padding: 100px 24px 60px;
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+    }
+    .auth-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 40px; width: 100%; max-width: 420px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+    .auth-logo { text-align: center; font-family: var(--font-display); font-size: 24px; color: var(--green); margin-bottom: 8px; }
+    .auth-sub { text-align: center; font-size: 14px; color: var(--text-muted); margin-bottom: 32px; }
+    .auth-title { font-family: var(--font-display); font-size: 28px; text-align: center; margin-bottom: 28px; }
+    .btn-full { width: 100%; padding: 14px; background: var(--green); color: #fff; border: none; border-radius: var(--radius); font-size: 15px; font-weight: 600; cursor: pointer; transition: var(--transition); }
+    .btn-full:hover { background: var(--green-dark); }
+    .auth-footer { text-align: center; margin-top: 20px; font-size: 14px; color: var(--text-muted); }
+    .auth-footer a { color: var(--green); font-weight: 600; }
+    .divider { display: flex; align-items: center; gap: 12px; margin: 20px 0; }
+    .divider::before, .divider::after { content: ''; flex: 1; border-top: 1px solid var(--border); }
+    .divider span { font-size: 12px; color: var(--text-light); }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo"><span class="logo-cross">✚</span> FarmaVida</a>
+    </div>
+  </nav>
+
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <div class="auth-logo">✚ FarmaVida</div>
+      <div class="auth-sub">Sua farmácia online de confiança</div>
+      <h2 class="auth-title">Entrar na conta</h2>
+      <div id="msgLogin"></div>
+      <div class="form-group">
+        <label>E-mail</label>
+        <input type="email" id="loginEmail" placeholder="seu@email.com" />
+      </div>
+      <div class="form-group">
+        <label>Senha</label>
+        <input type="password" id="loginSenha" placeholder="••••••••" />
+      </div>
+      <button class="btn-full" onclick="fazerLogin()">Entrar</button>
+      <div class="divider"><span>ou</span></div>
+      <div class="auth-footer">
+        Não tem conta? <a href="cadastro.html">Cadastre-se grátis</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script>
+    function fazerLogin() {
+      const email = document.getElementById('loginEmail').value;
+      const senha = document.getElementById('loginSenha').value;
+      const msg = document.getElementById('msgLogin');
+      if (!email || !senha) {
+        msg.innerHTML = '<div class="alert alert-error">Preencha todos os campos.</div>';
+        return;
+      }
+      msg.innerHTML = '<div class="alert alert-success">Login realizado! Redirecionando...</div>';
+      setTimeout(() => { window.location.href = '../index.html'; }, 1500);
+    }
+  </script>
+</body>
+</html>

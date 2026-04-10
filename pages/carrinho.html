@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carrinho — FarmaVida</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css" />
+  <style>
+    .page-header-bar { background: linear-gradient(135deg, var(--green-dark), var(--green)); padding: 100px 0 40px; color: #fff; }
+    .page-title { font-family: var(--font-display); font-size: 40px; font-weight: 400; }
+    .cart-layout { display: grid; grid-template-columns: 1fr 340px; gap: 32px; padding: 40px 0 60px; }
+    .cart-items { display: flex; flex-direction: column; gap: 16px; }
+    .cart-item {
+      background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg);
+      padding: 20px; display: flex; align-items: center; gap: 20px;
+    }
+    .cart-item-emoji { font-size: 48px; width: 70px; height: 70px; background: var(--green-pale); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .cart-item-info { flex: 1; }
+    .cart-item-name { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .cart-item-tag { font-size: 12px; color: var(--green); margin-bottom: 8px; }
+    .qty-controls { display: flex; align-items: center; gap: 12px; }
+    .qty-btn { width: 30px; height: 30px; border: 1.5px solid var(--border); background: var(--white); border-radius: 6px; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+    .qty-btn:hover { border-color: var(--green); color: var(--green); }
+    .qty-num { font-size: 16px; font-weight: 600; min-width: 24px; text-align: center; }
+    .cart-item-price { font-size: 20px; font-weight: 700; color: var(--green); margin-left: auto; }
+    .btn-remove { background: none; border: none; cursor: pointer; font-size: 18px; color: var(--text-light); transition: var(--transition); padding: 4px; }
+    .btn-remove:hover { color: #dc2626; }
+    /* Resumo */
+    .cart-summary { position: sticky; top: 88px; align-self: start; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; }
+    .summary-title { font-family: var(--font-display); font-size: 22px; margin-bottom: 20px; }
+    .summary-line { display: flex; justify-content: space-between; font-size: 14px; color: var(--text-muted); margin-bottom: 10px; }
+    .summary-divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+    .summary-total { display: flex; justify-content: space-between; font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 20px; }
+    .btn-checkout { width: 100%; padding: 16px; background: var(--green); color: #fff; border: none; border-radius: var(--radius); font-size: 16px; font-weight: 600; cursor: pointer; transition: var(--transition); }
+    .btn-checkout:hover { background: var(--green-dark); }
+    .summary-security { text-align: center; font-size: 12px; color: var(--text-light); margin-top: 12px; }
+    .empty-cart { text-align: center; padding: 80px 0; }
+    .empty-cart div { font-size: 64px; margin-bottom: 16px; }
+    .empty-cart h2 { font-family: var(--font-display); font-size: 28px; margin-bottom: 12px; }
+    .empty-cart p { color: var(--text-muted); margin-bottom: 24px; }
+    @media (max-width: 768px) { .cart-layout { grid-template-columns: 1fr; } .cart-item { flex-wrap: wrap; } }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo"><span class="logo-cross">✚</span> FarmaVida</a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Início</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="login.html" class="btn-outline">Entrar</a>
+        <a href="carrinho.html" class="btn-cart">
+          <span>🛒</span><span class="cart-count" id="cartCount">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header-bar">
+    <div class="container">
+      <h1 class="page-title">Meu Carrinho</h1>
+    </div>
+  </div>
+
+  <div class="container cart-layout" id="cartLayout"></div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none;padding-top:0">
+        <p>© 2024 FarmaVida. Todos os direitos reservados.</p>
+        <p>Hospedado na <strong>Amazon Web Services</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    function renderCarrinho() {
+      const layout = document.getElementById('cartLayout');
+      if (!carrinho.length) {
+        layout.innerHTML = `
+          <div class="empty-cart" style="grid-column:1/-1">
+            <div>🛒</div>
+            <h2>Seu carrinho está vazio</h2>
+            <p>Adicione produtos para continuar.</p>
+            <a href="produtos.html" class="btn-primary">Ver produtos</a>
+          </div>`;
+        return;
+      }
+      const subtotal = carrinho.reduce((s, i) => s + i.preco * i.qty, 0);
+      const frete = subtotal >= 150 ? 0 : 12.90;
+      const total = subtotal + frete;
+      layout.innerHTML = `
+        <div class="cart-items">
+          ${carrinho.map(item => `
+            <div class="cart-item">
+              <div class="cart-item-emoji">${item.emoji}</div>
+              <div class="cart-item-info">
+                <div class="cart-item-name">${item.nome}</div>
+                <div class="cart-item-tag">${item.tag}</div>
+                <div class="qty-controls">
+                  <button class="qty-btn" onclick="atualizarQtd(${item.id},-1);renderCarrinho()">−</button>
+                  <span class="qty-num">${item.qty}</span>
+                  <button class="qty-btn" onclick="atualizarQtd(${item.id},1);renderCarrinho()">+</button>
+                </div>
+              </div>
+              <div class="cart-item-price">R$ ${(item.preco * item.qty).toFixed(2).replace('.', ',')}</div>
+              <button class="btn-remove" onclick="removerDoCarrinho(${item.id});renderCarrinho()" title="Remover">✕</button>
+            </div>
+          `).join('')}
+        </div>
+        <div class="cart-summary">
+          <h2 class="summary-title">Resumo do pedido</h2>
+          <div class="summary-line"><span>Subtotal</span><span>R$ ${subtotal.toFixed(2).replace('.', ',')}</span></div>
+          <div class="summary-line"><span>Frete</span><span>${frete === 0 ? '<span style="color:var(--green)">Grátis</span>' : 'R$ ' + frete.toFixed(2).replace('.', ',')}</span></div>
+          ${subtotal < 150 ? `<div style="font-size:12px;color:var(--green);margin-bottom:8px">Frete grátis acima de R$ 150,00</div>` : ''}
+          <hr class="summary-divider"/>
+          <div class="summary-total"><span>Total</span><span>R$ ${total.toFixed(2).replace('.', ',')}</span></div>
+          <button class="btn-checkout" onclick="mostrarNotificacao('Pedido realizado com sucesso!')">Finalizar compra</button>
+          <p class="summary-security">🔒 Pagamento 100% seguro — AWS Shield</p>
+        </div>`;
+    }
+    document.addEventListener('DOMContentLoaded', renderCarrinho);
+  </script>
+</body>
+</html>
